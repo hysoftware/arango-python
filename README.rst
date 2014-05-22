@@ -1,4 +1,4 @@
-Python driver for ArangoDB
+Python driver for ArangoDB 0.2.2
 --------------------------
 
 Driver for **ArangoDB REST API** inrerface, `arangodb.org <http://arangodb.org>`_
@@ -86,6 +86,7 @@ Tested on **ArangoDB version**: *2.0.7*
 
 Developed by `Maksym Klymyshyn <http://ua.linkedin.com/in/klymyshyn>`_
 
+Forked by `Abdul Hamid <https://twitter.com/@appsclusterhub>`_
 
 Changelog
 *********
