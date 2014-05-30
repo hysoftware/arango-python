@@ -1,4 +1,4 @@
-Python driver for ArangoDB 0.2.2
+Python driver 0.2.2 for ArangoDB 2.0.7
 --------------------------
 
 Driver for **ArangoDB REST API** inrerface, `arangodb.org <http://arangodb.org>`_
