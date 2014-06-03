@@ -71,6 +71,36 @@ To use **ArangoDB authentication via HTTP** try following example::
     for doc in c.test_collection.query.execute():
       print doc.id
 
+To **change or reset** arangodb **user** account **password**::
+
+    # In terminal run
+    arangosh
+    
+    # For improving security its a good idea to change the root account password
+    # Once in arangosh run the following commands
+    users = require("org/arangodb/users");
+    users.update("root", "the_new_password", true);
+    users.reload();
+    
+    quit
+    
+    # restart arangodb
+    /etc/init.d/arangodb restart
+    
+
+To enable arangodb **authentication** change the following 2 config files::
+
+    # 1. > /etc/arangodb/arangob.conf
+    [server]
+    disable-authentication = false
+
+    # 2. > /etc/arangodb/arangod.conf
+    # disable authentication for the admin frontend
+    disable-authentication = no
+    
+    # restart arangodb for changes to take effect
+    /etc/init.d/arangodb restart
+
 For more details please read `Documentation <http://arangodb-python-driver.readthedocs.org/en/latest/>`_
 
 
@@ -82,7 +112,7 @@ Supported Python interpreters and versions:
 
 Supported **ArangoDB versions**: *1.4x*
 
-Tested on **ArangoDB version**: *2.0.7*
+Tested on **ArangoDB version**: *2.0.7 and 2.1.0*
 
 Developed by `Maksym Klymyshyn <http://ua.linkedin.com/in/klymyshyn>`_
 
