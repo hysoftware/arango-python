@@ -26,4 +26,8 @@ else:
         from .urllib2client import Urllib2Client
         Client = Urllib2Client
     except ImportError:
+<<<<<<< HEAD
         logger.warning(u"Urllib2 not available. %s", str(e))
+=======
+        logger.warning(u"Urllib2 not available. %s", str(e))
+>>>>>>> 73964918896a8bee82f15757c4e2a712ff38eadb
