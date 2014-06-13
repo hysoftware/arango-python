@@ -1,4 +1,4 @@
-Python driver 0.2.2 for ArangoDB 2.0.7
+Python driver 0.2.3 for ArangoDB 2.1.1
 --------------------------
 
 Driver for **ArangoDB REST API** inrerface, `arangodb.org <http://arangodb.org>`_
@@ -53,13 +53,25 @@ To use **ArangoDB authentication via HTTP** try following example::
     from arango.clients.requestsclient import RequestsClient
     from arango.core import Connection
 
-    # Login to ArangoDB
-    RequestsClient.config(auth=HTTPBasicAuth('arango_user', 'password'))
-
-    # Connect to the appropriate DB 
-    c = Connection(db="test", client=RequestsClient)
+    def ARDBconnect():
+        try:
+            # Prepare Login for ArangoDB
+            RequestsClient.config(auth=HTTPBasicAuth('arango_user', 'password'))
+            # Login for ArangoDB
+            db = Connection(db="test", client=RequestsClient)
+            # Connect to the appropriate DB 
+            arango = c.version
+            print 'Connected to ArangoDB version: ', arango.version
+            return db
+        except Exception, e:
+            print "Error %d: %s" % (e.args[0], e.args[1])
+            
+    c = ARDBconnect()
     c = c.collection
+    
+    # Create a new collection
     c.test_collection.create()
+    # Add a document to the collection
     c.test_collection.documents.create({"key": "value"})
 
     # get first document
@@ -112,7 +124,7 @@ Supported Python interpreters and versions:
 
 Supported **ArangoDB versions**: *1.4x*
 
-Tested on **ArangoDB version**: *2.0.7 and 2.1.0*
+Tested on **ArangoDB version**: *2.0.7, 2.1.0 and 2.1.1*
 
 Developed by `Maksym Klymyshyn <http://ua.linkedin.com/in/klymyshyn>`_
 
@@ -120,6 +132,12 @@ Forked by `Abdul Hamid <https://twitter.com/@appsclusterhub>`_
 
 Changelog
 *********
+
+0.2.3
+~~~~~~
+
+ * default initialisation temporarily disabled and used RequestsClient.config directly instead. 
+ * Added exception handling for status code 401 authentication failure to ArangoDB
 
 0.2.2
 ~~~~~~
