@@ -52,7 +52,8 @@ To use **ArangoDB authentication via HTTP** try following example::
     from requests.auth import HTTPBasicAuth
     from arango.clients.requestsclient import RequestsClient
     from arango.core import Connection
-
+    import sys
+    
     def ARDBconnect():
         try:
             # Prepare Login for ArangoDB
@@ -60,12 +61,14 @@ To use **ArangoDB authentication via HTTP** try following example::
             # Login for ArangoDB
             db = Connection(db="test", client=RequestsClient)
             # Connect to the appropriate DB 
-            arango = c.version
+            arango = db.version
             print 'Connected to ArangoDB version: ', arango.version
             return db
         except Exception, e:
             print "Error %d: %s" % (e.args[0], e.args[1])
-            
+            sys.exit(1)
+    
+    # Create ArangoDB connection handle        
     c = ARDBconnect()
     c = c.collection
     
