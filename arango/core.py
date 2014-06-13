@@ -191,20 +191,29 @@ class Response(dict):
         self.message = ""
         self._data = None
 
-        try:
-            if expect_raw is False:
-                self.update({k: v
-                             for k, v in
-                             json.loads(response.text).items()})
-
-        except (TypeError, ValueError) as e:
-            msg = u"Can't parse response from ArangoDB:"\
+        if (response.status_code==401):
+            raise Exception(401, 'Authentication Failed')
+            msg = u"Authentication Failed with ArangoDB:"\
                 u" {0} (URL: {1}, Response: {2})".format(
-                    str(e), url, repr(response))
-
+                    response.status_code, url, repr(response))
             logger.error(msg)
             self.status = 500
             self.message = msg
+        else:
+            try:
+                if expect_raw is False:
+                    self.update({k: v
+                                 for k, v in
+                                 json.loads(response.text).items()})
+
+            except (TypeError, ValueError) as e:
+                msg = u"Can't parse response from ArangoDB:"\
+                    u" {0} (URL: {1}, Response: {2})".format(
+                        str(e), url, repr(response))
+
+                logger.error(msg)
+                self.status = 500
+                self.message = msg
 
     @property
     def data(self):
