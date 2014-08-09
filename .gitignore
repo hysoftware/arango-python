@@ -1,11 +1,4 @@
+*.kdev4
+.kdev4
+__pycache__
 *.pyc
-env/*
-.coverage
-coverage/*
-docs/build/*
-*.egg-info
-dist/*
-Makefile.local
-urllib2_pypy.py
-*.rc
-.venv

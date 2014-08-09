@@ -1,5 +1,3 @@
-'''
-# temporarily disabled and RequestsClient.config used directly instead
 from arango.core import Connection
 
 
@@ -12,4 +10,3 @@ def create(**kwargs):
 
 c = Connection()
 collection = c.collection
-'''
