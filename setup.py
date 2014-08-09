@@ -21,7 +21,7 @@ setup(
     description="Driver for ArangoDB",
     author="Maksym Klymyshyn",
     author_email="klymyshyn@gmail.com",
-    url="https://github.com/appscluster/arango-python",
+    url="http://arangodb-python-driver.readthedocs.org/en/latest/",
     packages=["arango"],
     long_description=open("README.rst").read(),
     include_package_data=True,

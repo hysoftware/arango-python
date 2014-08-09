@@ -13,13 +13,7 @@ Installation
 
   Download from repository
 
-  wget https://github.com/appscluster/arango-python/archive/master.zip
-
-  7z x master.zip ( if you don't have 7z : sudo apt-get install p7zip-full )
-
-  cd arango-python-master
-
-  python setup.py install
+  pip install https://github.com/hysoftware/arango-python/archive/master.zip
 
 
 Usage
