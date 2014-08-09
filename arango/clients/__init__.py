@@ -12,12 +12,12 @@ if ISPY3 is False:
     try:
         from .pycurlclient import PyCurlClient
         Client = PyCurlClient
-    except ImportError:
+    except ImportError as e:
         try:
             logger.warning(u"PyCurl not available, trying Urllib2. %s", str(e))
             from .urllib2client import Urllib2Client
             Client = Urllib2Client
-        except ImportError:
+        except ImportError as e:
             logger.warning(u"Urllib2 not available. %s", str(e))
     except Exception as e:
         logger.warning(u"No library available for opening URLs. %s", str(e))
