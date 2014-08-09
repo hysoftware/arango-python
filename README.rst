@@ -3,7 +3,8 @@ Python driver 0.2.3 for ArangoDB 2.1.1
 
 Driver for **ArangoDB REST API** inrerface, `arangodb.org <http://arangodb.org>`_
 
-.. image:: https://travis-ci.org/joymax/arango-python.png?branch=master
+.. image:: https://travis-ci.org/hysoftware/arango-python.svg?branch=master
+    :target: https://travis-ci.org/hysoftware/arango-python
 
 
 Installation
