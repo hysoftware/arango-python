@@ -94,7 +94,11 @@ class Urllib2Client(RequestsBase):
 
         req = Request(url)
         req.add_header('Content-Type', 'application/json')
-        req.add_data(data.encode(cls.encoding))
+        try:
+            req.add_data(data.encode(cls.encoding))
+        except AttributeError:
+            req.data = ("").encode(cls.encoding)
+            req.data += data.encode(cls.encoding)
         req.get_method = lambda: "put"
         response = urlopen(req)
 

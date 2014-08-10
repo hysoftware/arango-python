@@ -64,9 +64,11 @@ class TestCollection(TestsBase):
         test_data = {
             "name": "test", "waitForSync": False,
             "type": Collections.COLLECTION_DOCUMENTS}
-        test_args = {"data": json.dumps(test_data)}
+        test_args = {"data": test_data}
 
         assert_true(Client.post.called)
+        result = Client.post.call_args[1]
+        result["data"] = json.loads(result["data"])
         assert_equal(Client.post.call_args[1], test_args)
 
     def test_create_edges(self):
