@@ -35,7 +35,9 @@ class Database(object):
                 "name": self.name}))
 
         # update revision of the document
-        if response.status_code >= 200 and response.status_code < 300:
+        if (response.status_code >= 200 and response.status_code < 300) or \
+                (response.status_code in [400, 403, 409] and
+                    ignore_exist is True):
             return self
 
         if response.status_code in [400, 403, 409] and ignore_exist is False:

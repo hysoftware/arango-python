@@ -1,7 +1,7 @@
 import logging
 
 from nose.tools import assert_equal, assert_false, assert_true, \
-    assert_not_equal
+    assert_not_equal, assert_is_not
 
 from .tests_integraion_base import TestsIntegration
 
@@ -26,7 +26,7 @@ class TestsCollection(TestsIntegration):
     def test_collection_creation(self):
         c = self.conn
 
-        logger.info("Creationg new collection 'test'")
+        logger.info("Creating new collection 'test'")
         c.collection.test.delete()
         created = c.collection.test.create()
         self.wait()
@@ -43,6 +43,16 @@ class TestsCollection(TestsIntegration):
         logger.info("Deleting collection 'test' with waitForSync=True")
         created = c.collection.test.create(waitForSync=True)
         assert_true(created.cid in c.collection())
+
+    def test_collection_duplicate_creation(self):
+        c = self.conn
+        c.collection.test.delete()
+        logger.info("Creating new collection 'test'")
+        created_collection = c.collection.test.create()
+        logger.info("Creating new collection 'test' again")
+        created_collection_2 = c.collection.test.create()
+        assert_is_not(created_collection_2, None)
+        assert_equal(created_collection_2, created_collection)
 
     def test_edges_collection_creation(self):
         c = self.conn

@@ -241,7 +241,8 @@ class Collection(object):
             self.CREATE_COLLECTION_PATH,
             data=params)
 
-        if response.status == 200:
+        if (response.status >= 200 and response.status < 300) or \
+                (response.status == 409):
             # TODO: update ID/revision for this collection
             return self
 
