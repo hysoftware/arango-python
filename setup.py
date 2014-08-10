@@ -13,7 +13,7 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
 
-VERSION = "0.2.3"
+VERSION = "0.2.4"
 
 setup(
     name="arango",
@@ -34,6 +34,7 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.3"
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4"
     ]
 )
