@@ -49,14 +49,18 @@ class TestsCollection(TestsIntegration):
         c.collection.test.delete()
         logger.info("Creating new collection 'test'")
         created_collection = c.collection.test.create()
+        self.wait()
         logger.info("Creating new collection 'test' again")
+        self.wait()
         created_collection_2 = c.collection.test.create()
         assert_is_not(created_collection_2, None)
         assert_equal(created_collection_2, created_collection)
+        created_collection.delete()
+        created_collection_2.delete()
 
     def test_edges_collection_creation(self):
         c = self.conn
-        logger.info("Creating edges collection 'test'")
+        logger.info("Creating edges collection 'test_edge'")
 
         created = c.collection.test_edges.create_edges()
         self.wait()
@@ -66,6 +70,20 @@ class TestsCollection(TestsIntegration):
 
         self.wait()
         assert_false(created.cid in c.collection())
+
+    def test_edges_collection_duplicate_creation(self):
+        c = self.conn
+        logger.info("Creating edges collection 'test_edge'")
+        created = c.collection.test_edges.create_edges()
+        self.wait()
+        logger.info("Creating edges collection 'test_edge' again")
+        created2 = c.collection.test_edges.create_edges()
+        self.wait()
+        assert_is_not(created, None)
+        assert_is_not(created2, None)
+        assert_equal(created, created)
+        created.delete()
+        created2.delete()
 
     def test_colletion_deletion(self):
         c = self.conn
